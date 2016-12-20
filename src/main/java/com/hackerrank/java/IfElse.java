@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by satyajit on 12/20/2016.
  */
-public class JavaIfElse {
+public class IfElse {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int input = scanner.nextInt();
