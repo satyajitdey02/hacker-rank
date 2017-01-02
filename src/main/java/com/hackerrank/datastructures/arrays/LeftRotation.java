@@ -20,57 +20,15 @@ public class LeftRotation {
 
     int arr[] = new int[n];
     for (int i = 0; i < n; i++) {
-      arr[i] = in.nextInt();
-      if (arr[i] < 1 || arr[i] > Math.pow(10, 6)) {
+      int tempIn = in.nextInt();
+      if (tempIn < 1 || tempIn > Math.pow(10, 6)) {
         return;
       }
-    }
-    in.close();
-
-    if (d > (n / 2)) {
-      print(rightRotate(n - d, arr));
-    } else {
-      print(leftRotate(d, arr));
+      arr[(i + n - d) % n] = tempIn;
     }
 
-  }
-
-  private static void print(int arr[]) {
-    for (int i = 0; i < arr.length; i++) {
-      System.out.printf("%s ", arr[i]);
+    for (int i = 0; i < n; i++) {
+      System.out.print(arr[i] + " ");
     }
-  }
-
-  private static int[] rightRotate(int d, int arr[]) {
-    if (arr.length == 1) {
-      return arr;
-    }
-
-    for (int i = 0; i < d; i++) {
-      int temp = arr[arr.length - 1];
-      for (int j = arr.length - 2; j >= 0; j--) {
-        arr[j + 1] = arr[j];
-      }
-
-      arr[0] = temp;
-    }
-
-    return arr;
-  }
-
-  private static int[] leftRotate(int d, int arr[]) {
-    if (arr.length == 1) {
-      return arr;
-    }
-
-    for (int i = 0; i < d; i++) {
-      int temp = arr[0];
-      for (int j = 0; j < arr.length - 1; j++) {
-        arr[j] = arr[j + 1];
-      }
-      arr[arr.length - 1] = temp;
-    }
-
-    return arr;
   }
 }
