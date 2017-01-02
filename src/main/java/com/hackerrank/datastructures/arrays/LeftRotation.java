@@ -1,6 +1,5 @@
 package com.hackerrank.datastructures.arrays;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -28,17 +27,50 @@ public class LeftRotation {
     }
     in.close();
 
+    if (d > (n / 2)) {
+      print(rightRotate(n - d, arr));
+    } else {
+      print(leftRotate(d, arr));
+    }
+
+  }
+
+  private static void print(int arr[]) {
+    for (int i = 0; i < arr.length; i++) {
+      System.out.printf("%s ", arr[i]);
+    }
+  }
+
+  private static int[] rightRotate(int d, int arr[]) {
+    if (arr.length == 1) {
+      return arr;
+    }
+
+    for (int i = 0; i < d; i++) {
+      int temp = arr[arr.length - 1];
+      for (int j = arr.length - 2; j >= 0; j--) {
+        arr[j + 1] = arr[j];
+      }
+
+      arr[0] = temp;
+    }
+
+    return arr;
+  }
+
+  private static int[] leftRotate(int d, int arr[]) {
+    if (arr.length == 1) {
+      return arr;
+    }
 
     for (int i = 0; i < d; i++) {
       int temp = arr[0];
-      for (int j = 0; j < n - 1; j++) {
+      for (int j = 0; j < arr.length - 1; j++) {
         arr[j] = arr[j + 1];
       }
-      arr[n - 1] = temp;
+      arr[arr.length - 1] = temp;
     }
 
-    for (int i = 0; i < n; i++) {
-      System.out.printf("%s ", arr[i]);
-    }
+    return arr;
   }
 }
