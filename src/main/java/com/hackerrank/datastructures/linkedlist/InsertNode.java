@@ -9,11 +9,35 @@ public class InsertNode {
   public static void main(String[] args) {
 
     InsertNode insertNode = new InsertNode();
-    Node head = insertNode.insertAtHead(null, 5);
-    head = insertNode.insertAtHead(head, 10);
-    head = insertNode.insertAtHead(head, 15);
+    Node head = insertNode.insertAtTail(null, 5);
+    head = insertNode.insertAtTail(head, 10);
+    head = insertNode.insertAtTail(head, 20);
+
+    head = insertNode.insetAtNthPosition(head, 15, 0);
 
     insertNode.print(head);
+  }
+
+  /*Insert a node at Nth Position*/
+  private Node insetAtNthPosition(Node head, int data, int position) {
+    Node newNode = new Node();
+    newNode.data = data;
+
+    if (head == null) {
+      return newNode;
+    }
+
+    Node currentNode = head;
+    Node prevNode = head;
+    for (int i = 0; i < position; i++) {
+      prevNode = currentNode;
+      currentNode = currentNode.next;
+    }
+
+    prevNode.next = newNode;
+    newNode.next = currentNode;
+
+    return head;
   }
 
   /*Inserts a node at the head of a linked list*/
@@ -53,7 +77,7 @@ public class InsertNode {
 
   /*Print the Elements of a Linked List*/
   private void print(Node head) {
-    while(head != null) {
+    while (head != null) {
       System.out.println(head.data);
       head = head.next;
     }
