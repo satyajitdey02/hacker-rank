@@ -9,31 +9,37 @@ public class InsertNode {
   public static void main(String[] args) {
 
     InsertNode insertNode = new InsertNode();
-    Node head = insertNode.insertAtTail(null,5);
-    System.out.println(head.data);
-    head = insertNode.insertAtTail(head,10);
-    System.out.println(head.data);
-    head = insertNode.insertAtTail(head,15);
-    System.out.println(head.data);
+    Node head = insertNode.insertAtTail(null, 5);
+    head = insertNode.insertAtTail(head, 10);
+    head = insertNode.insertAtTail(head, 15);
+
+    insertNode.print(head);
   }
 
+  /*Inserts a Node at the Tail of a Linked List*/
   private Node insertAtTail(Node head, int data) {
 
+    Node newNode = new Node();
+    newNode.data = data;
+
     if (head == null) {
-      Node node = new Node();
-      node.data = data;
-      return node;
+      return newNode;
     }
 
-    if (head.next == null) {
-      Node node = new Node();
-      node.data = data;
-      head.next = node;
-      return head;
+    Node last = head;
+    while (last.next != null) {
+      last = last.next;
     }
 
-    head = insertAtTail(head.next, data);
+    last.next = newNode;
     return head;
   }
 
+  /*Print the Elements of a Linked List*/
+  private void print(Node head) {
+    while(head != null) {
+      System.out.println(head.data);
+      head = head.next;
+    }
+  }
 }
