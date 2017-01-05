@@ -12,28 +12,21 @@ public class DeleteNode {
     head = insertNode.insertAtTail(head, 20);
 
     DeleteNode deleteNode = new DeleteNode();
-    head = deleteNode.deleteNthNode(head, 3);
+    head = deleteNode.deleteNthNode(head, 5);
 
     new LinkedListPrinter(head).print();
   }
 
   private Node deleteNthNode(Node head, int position) {
+    if (position > 0 && head.next == null) {
+      return head;
+    }
 
-    if (position == 0) {
+    if (position == 0 || head.next == null) {
       return head.next;
     }
 
-    Node currentNode = head;
-    Node prevNode = head;
-    for (int i = 0; i < position; i++) {
-      prevNode = currentNode;
-      if (currentNode.next == null) {
-        break;
-      }
-      currentNode = currentNode.next;
-    }
-
-    prevNode.next = currentNode.next;
+    head.next = deleteNthNode(head.next, position - 1);
     return head;
   }
 }
