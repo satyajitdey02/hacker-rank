@@ -1,7 +1,5 @@
 package com.hackerrank.datastructures.linkedlist;
 
-import java.util.Scanner;
-
 /**
  * Created by satyajit on 1/2/17.
  */
@@ -14,12 +12,11 @@ public class InsertNode {
     head = insertNode.insertAtTail(head, 20);
 
     head = insertNode.insetAtNthPosition(head, 15, 6);
-
-    insertNode.print(head);
+    new LinkedListPrinter(head).print();
   }
 
   /*Insert a node at Nth Position*/
-  private Node insetAtNthPosition(Node head, int data, int position) {
+  public Node insetAtNthPosition(Node head, int data, int position) {
     Node newNode = new Node();
     newNode.data = data;
 
@@ -52,7 +49,7 @@ public class InsertNode {
   }
 
   /*Inserts a node at the head of a linked list*/
-  private Node insertAtHead(Node head, int data) {
+  public Node insertAtHead(Node head, int data) {
     Node newNode = new Node();
     newNode.data = data;
 
@@ -68,7 +65,7 @@ public class InsertNode {
   }
 
   /*Inserts a Node at the Tail of a Linked List*/
-  private Node insertAtTail(Node head, int data) {
+  public Node insertAtTail(Node head, int data) {
 
     Node newNode = new Node();
     newNode.data = data;
@@ -86,11 +83,5 @@ public class InsertNode {
     return head;
   }
 
-  /*Print the Elements of a Linked List*/
-  private void print(Node head) {
-    while (head != null) {
-      System.out.println(head.data);
-      head = head.next;
-    }
-  }
+
 }
