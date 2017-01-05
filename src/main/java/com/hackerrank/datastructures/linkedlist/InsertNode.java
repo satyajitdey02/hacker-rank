@@ -13,7 +13,7 @@ public class InsertNode {
     head = insertNode.insertAtTail(head, 10);
     head = insertNode.insertAtTail(head, 20);
 
-    head = insertNode.insetAtNthPosition(head, 15, 0);
+    head = insertNode.insetAtNthPosition(head, 15, 6);
 
     insertNode.print(head);
   }
@@ -27,11 +27,22 @@ public class InsertNode {
       return newNode;
     }
 
+    if (position == 0) {
+      Node first = head;
+      newNode.next = first;
+      head = newNode;
+
+      return head;
+    }
+
     Node currentNode = head;
     Node prevNode = head;
     for (int i = 0; i < position; i++) {
       prevNode = currentNode;
       currentNode = currentNode.next;
+      if (currentNode == null) {
+        break;
+      }
     }
 
     prevNode.next = newNode;
