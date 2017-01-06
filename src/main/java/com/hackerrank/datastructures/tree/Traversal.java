@@ -3,7 +3,7 @@ package com.hackerrank.datastructures.tree;
 /**
  * Created by satyajit on 1/6/17.
  */
-public class Tree {
+public class Traversal {
   public static void main(String[] args) {
 
   }
