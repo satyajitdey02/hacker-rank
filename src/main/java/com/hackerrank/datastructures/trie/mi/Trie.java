@@ -6,9 +6,10 @@ import java.util.List;
 /**
  * Created by satyajit on 1/16/17.
  */
+//TODO: add new field value:String to Trie Class
 public class Trie {
   char ch;
-  List<Trie> childs = new ArrayList<Trie>();
+  Trie[] childs = new Trie[26];
   boolean end;
 
   public Trie(char ch) {
@@ -28,52 +29,78 @@ public class Trie {
   }
 
   private boolean containsKey(char ch) {
-    if(childs==null || childs.isEmpty()) {
+    if (childs == null || childs.length <=0 ) {
       return false;
     }
 
-    return childs.get(ch - 'a') != null;
+    return childs[ch - 'a'] != null;
   }
 
   public void insert(String str) {
     char[] chars = str.toCharArray();
     Trie trie = this;
     for (char c : chars) {
-      Trie newChild = null;
+      Trie newChild;
       if (!trie.containsKey(c)) {
         newChild = new Trie(c);
-        trie.childs.add(newChild);
+        trie.childs[c-'a'] = newChild;
       }
 
-      trie = newChild;
+      trie = trie.childs[c-'a'];
     }
 
     trie.setEnd();
   }
 
-  public void print() {
-    Trie trie =  this;
-    System.out.println(trie.ch);
+  public List<String> search(String word) {
+    List<String> results = new ArrayList<String>();
+    char[] searchChars = word.toLowerCase().toCharArray();
+    Trie matchingNode = this;
+    boolean matched=false;
+    for(char c: searchChars) {
+      //Trie[] nodes = this.childs;
+      matchingNode = matchingNode.childs[c-'a'];
+      if(matchingNode!=null) {
+        matched = true;
+        continue;
+      } else {
+        matched = false;
+        break;
+      }
+
+    }
+results.add(word);
+   // while ()
+    return results;
+
+
+  }
+
+  public void print(Trie node) {
+    System.out.print(node.ch + "-->");
+    /*System.out.println(" |");
     System.out.println(" |");
-    System.out.println(" |");
-    if (trie.isEnd()) {
+    if (node.isEnd()) {
       System.out.println("{E}");
       return;
-    }
+    }*/
 
-    List<Trie> rootChilds = trie.childs;
-    if (!rootChilds.isEmpty()) {
-      for (Trie t : rootChilds) {
-        trie = t;
-        print();
+    if (node.childs != null && node.childs.length > 0) {
+      for (Trie t : node.childs) {
+        if(t==null) {
+          continue;
+        }
+        print(t);
       }
     }
   }
 
   public static void main(String[] args) {
     Trie trie = createRoot();
-    trie.insert("satyajit");
-    trie.print();
+    trie.insert("tea");
+    trie.insert("teach");
+    trie.insert("teacher");
+    trie.print(trie);
   }
 
 }
