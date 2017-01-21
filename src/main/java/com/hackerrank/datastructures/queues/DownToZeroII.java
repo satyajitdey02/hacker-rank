@@ -10,28 +10,6 @@ import java.util.Scanner;
 public class DownToZeroII {
   static int currentMinDepth = Integer.MAX_VALUE;
 
-/*  public static void main(String[] args) {
-    Scanner in = new Scanner(System.in);
-    //4457
-    //603900
-    //46264
-    //833352
-    //225604
-    try {
-      while (true) {
-        int n = in.nextInt();
-        currentMinDepth = Integer.MAX_VALUE;
-        FactorsTree tree = new FactorsTree(n, 0);
-        System.out.println(tree.getDownToZeroStep());
-      }
-    } catch (Exception e) {
-      System.out.println("Input Aborted!");
-    } finally {
-      in.close();
-    }
-  }*/
-
-
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
     int q = in.nextInt();
@@ -108,18 +86,6 @@ public class DownToZeroII {
       }
     }
 
-    public List<FactorsTree> getLeafNodes() {
-      List<FactorsTree> leafNodes = new ArrayList<>();
-      if (this.nodes.isEmpty()) {
-        leafNodes.add(this);
-      } else {
-        for (FactorsTree node : this.nodes) {
-          leafNodes.addAll(node.getLeafNodes());
-        }
-      }
-      return leafNodes;
-    }
-
     private boolean isPrime(int number) {
       if (number == 1) {
         return false;
@@ -144,7 +110,5 @@ public class DownToZeroII {
     public int getDownToZeroStep() {
       return currentMinDepth;
     }
-
   }
-
 }
