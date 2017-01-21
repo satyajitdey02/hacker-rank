@@ -1,15 +1,18 @@
 package com.hackerrank.datastructures.queues;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by satyajit on 1/21/17.
  */
 public class DownToZeroII {
-  static Map<Integer, Integer> allFactorsMap;
+  static int currentMinDepth = Integer.MAX_VALUE;
 
-  /*public static void main(String[] args) {
+/*  public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
+    //4457
     //603900
     //46264
     //833352
@@ -17,8 +20,9 @@ public class DownToZeroII {
     try {
       while (true) {
         int n = in.nextInt();
+        currentMinDepth = Integer.MAX_VALUE;
         FactorsTree tree = new FactorsTree(n, 0);
-        System.out.println(tree.minDownToZeroSteps());
+        System.out.println(tree.getDownToZeroStep());
       }
     } catch (Exception e) {
       System.out.println("Input Aborted!");
@@ -28,14 +32,14 @@ public class DownToZeroII {
   }*/
 
 
-
   public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-    int q=in.nextInt();
-    while (q-->0) {
+    int q = in.nextInt();
+    while (q-- > 0) {
       int n = in.nextInt();
+      currentMinDepth = Integer.MAX_VALUE;
       FactorsTree tree = new FactorsTree(n, 0);
-      System.out.println(tree.minDownToZeroSteps());
+      System.out.println(tree.getDownToZeroStep());
     }
     in.close();
   }
@@ -49,42 +53,59 @@ public class DownToZeroII {
       this.value = value;
       this.depth = depth;
       if (this.value == 0) {
+        if (this.depth < currentMinDepth) {
+          currentMinDepth = this.depth;
+        }
         return;
       }
 
       if (this.value == 1) {
-        FactorsTree tree = new FactorsTree(0, this.depth + 1);
-        this.nodes.add(tree);
+        if (this.depth < currentMinDepth) {
+          FactorsTree tree = new FactorsTree(0, this.depth + 1);
+          this.nodes.add(tree);
+        }
+
         return;
       }
 
       if (this.value == 2) {
-        FactorsTree tree = new FactorsTree(1, this.depth + 1);
-        this.nodes.add(tree);
+        if (this.depth < currentMinDepth) {
+          FactorsTree tree = new FactorsTree(1, this.depth + 1);
+          this.nodes.add(tree);
+        }
+
         return;
       }
 
       if (this.value == 3) {
-        FactorsTree tree = new FactorsTree(2, this.depth + 1);
-        this.nodes.add(tree);
+        if (this.depth < currentMinDepth) {
+          FactorsTree tree = new FactorsTree(2, this.depth + 1);
+          this.nodes.add(tree);
+        }
+
         return;
       }
 
       if (isPrime(this.value)) {
-        FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
-        this.nodes.add(tree);
+        if (this.depth < currentMinDepth) {
+          FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
+          this.nodes.add(tree);
+        }
+
         return;
       }
 
       for (int i = 2; i * i <= this.value; i++) {
-        if (this.value % i == 0) {
+        if (this.value % i == 0 && this.depth < currentMinDepth) {
           FactorsTree tree = new FactorsTree(Math.max(i, this.value / i), this.depth + 1);
           this.nodes.add(tree);
         }
       }
 
-      FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
-      this.nodes.add(tree);
+      if (this.depth < currentMinDepth) {
+        FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
+        this.nodes.add(tree);
+      }
     }
 
     public List<FactorsTree> getLeafNodes() {
@@ -99,17 +120,6 @@ public class DownToZeroII {
       return leafNodes;
     }
 
-    public int minDownToZeroSteps() {
-      int result = Integer.MAX_VALUE;
-      for (FactorsTree tree : getLeafNodes()) {
-        if (tree.depth < result) {
-          result = tree.depth;
-        }
-      }
-
-      return result;
-    }
-
     private boolean isPrime(int number) {
       if (number == 1) {
         return false;
@@ -122,13 +132,17 @@ public class DownToZeroII {
         return false;
       }
 
-      for (int i = 3; i * i < number; i += 2) {
+      for (int i = 3; i * i <= number; i += 2) {
         if (number % i == 0) {
           return false;
         }
       }
 
       return true;
+    }
+
+    public int getDownToZeroStep() {
+      return currentMinDepth;
     }
 
   }
