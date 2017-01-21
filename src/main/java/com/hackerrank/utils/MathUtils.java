@@ -22,7 +22,7 @@ public class MathUtils {
       return false;
     }
 
-    for (int i = 3; i * i < number; i += 2) {
+    for (int i = 3; i * i <= number; i += 2) {
       if (number % i == 0) {
         return false;
       }
