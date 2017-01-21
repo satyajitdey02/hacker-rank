@@ -1,5 +1,6 @@
 package com.hackerrank.utils;
 
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -43,9 +44,21 @@ public class MathUtils {
   }
 
   public static void main(String[] args) {
-    for (int i = 0; i < 100; i++) {
-      int number = ThreadLocalRandom.current().nextInt(17, 591 + 1);
-      System.out.println(number + "-" + isPrime(number));
+    Scanner in = new Scanner(System.in);
+    try {
+      while (true) {
+        int q = in.nextInt();
+        int n = in.nextInt();
+        if (q == 1) {
+          System.out.println("Primality of " + n + ": " + isPrime(n));
+        } else if (q == 2) {
+          System.out.println("LPF of " + n + ": " + isPrime(n));
+        }
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    } finally {
+      in.close();
     }
   }
 }
