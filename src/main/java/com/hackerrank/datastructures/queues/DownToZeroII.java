@@ -15,7 +15,8 @@ public class DownToZeroII {
     try {
       while (true) {
         int n = in.nextInt();
-        reduce(n);
+        int moves = reduce(n);
+        System.out.println(moves);
       }
     } catch (Exception e) {
       System.out.println("Input Aborted!");
@@ -24,35 +25,32 @@ public class DownToZeroII {
     }
   }
 
-  private static void reduce(int n) {
-    System.out.print("-->" + n);
+  private static int  reduce(int n) {
     if (n == 0) {
-      System.out.println();
-      return;
+      return 0;
     }
     if (n == 1) {
-      reduce(0);
-      return;
+      return 1 + reduce(0);
     }
     if (n == 2) {
-      reduce(1);
-      return;
+      return 1 + reduce(1);
     }
     if (n == 3) {
-      reduce(2);
-      return;
+      return 1 + reduce(2);
     }
 
     if (isPrime(n)) {
-      reduce(n - 1);
-      return;
+      return 1 + reduce(n - 1);
     }
 
+    int move =0;
     findAllFactors(n);
     for (Map.Entry<Integer, Integer> entry : allFactorsMap.entrySet()) {
       int maxFactor = Math.max(entry.getKey(), entry.getValue());
-      reduce(maxFactor);
+      move = 1 + reduce(maxFactor);
     }
+
+    return move;
   }
 
   public static boolean isPrime(int number) {
