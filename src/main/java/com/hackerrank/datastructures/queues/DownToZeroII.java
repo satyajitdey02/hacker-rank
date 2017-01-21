@@ -1,8 +1,6 @@
 package com.hackerrank.datastructures.queues;
 
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by satyajit on 1/21/17.
@@ -10,82 +8,129 @@ import java.util.TreeMap;
 public class DownToZeroII {
   static Map<Integer, Integer> allFactorsMap;
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
+    //603900
+    //46264
+    //833352
+    //225604
     try {
       while (true) {
         int n = in.nextInt();
-        int moves = reduce(n);
-        System.out.println(moves);
+        FactorsTree tree = new FactorsTree(n, 0);
+        System.out.println(tree.minDownToZeroSteps());
       }
     } catch (Exception e) {
       System.out.println("Input Aborted!");
     } finally {
       in.close();
     }
+  }*/
+
+
+
+  public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+    int q=in.nextInt();
+    while (q-->0) {
+      int n = in.nextInt();
+      FactorsTree tree = new FactorsTree(n, 0);
+      System.out.println(tree.minDownToZeroSteps());
+    }
+    in.close();
   }
 
-  private static int  reduce(int n) {
-    if (n == 0) {
-      return 0;
-    }
-    if (n == 1) {
-      return 1 + reduce(0);
-    }
-    if (n == 2) {
-      return 1 + reduce(1);
-    }
-    if (n == 3) {
-      return 1 + reduce(2);
+  static class FactorsTree {
+    int value;
+    int depth;
+    List<FactorsTree> nodes = new ArrayList<>();
+
+    public FactorsTree(int value, int depth) {
+      this.value = value;
+      this.depth = depth;
+      if (this.value == 0) {
+        return;
+      }
+
+      if (this.value == 1) {
+        FactorsTree tree = new FactorsTree(0, this.depth + 1);
+        this.nodes.add(tree);
+        return;
+      }
+
+      if (this.value == 2) {
+        FactorsTree tree = new FactorsTree(1, this.depth + 1);
+        this.nodes.add(tree);
+        return;
+      }
+
+      if (this.value == 3) {
+        FactorsTree tree = new FactorsTree(2, this.depth + 1);
+        this.nodes.add(tree);
+        return;
+      }
+
+      if (isPrime(this.value)) {
+        FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
+        this.nodes.add(tree);
+        return;
+      }
+
+      for (int i = 2; i * i <= this.value; i++) {
+        if (this.value % i == 0) {
+          FactorsTree tree = new FactorsTree(Math.max(i, this.value / i), this.depth + 1);
+          this.nodes.add(tree);
+        }
+      }
+
+      FactorsTree tree = new FactorsTree(this.value - 1, this.depth + 1);
+      this.nodes.add(tree);
     }
 
-    if (isPrime(n)) {
-      return 1 + reduce(n - 1);
+    public List<FactorsTree> getLeafNodes() {
+      List<FactorsTree> leafNodes = new ArrayList<>();
+      if (this.nodes.isEmpty()) {
+        leafNodes.add(this);
+      } else {
+        for (FactorsTree node : this.nodes) {
+          leafNodes.addAll(node.getLeafNodes());
+        }
+      }
+      return leafNodes;
     }
 
-    int move =0;
-    findAllFactors(n);
-    for (Map.Entry<Integer, Integer> entry : allFactorsMap.entrySet()) {
-      int maxFactor = Math.max(entry.getKey(), entry.getValue());
-      move = 1 + reduce(maxFactor);
+    public int minDownToZeroSteps() {
+      int result = Integer.MAX_VALUE;
+      for (FactorsTree tree : getLeafNodes()) {
+        if (tree.depth < result) {
+          result = tree.depth;
+        }
+      }
+
+      return result;
     }
 
-    return move;
-  }
+    private boolean isPrime(int number) {
+      if (number == 1) {
+        return false;
+      }
+      if (number == 2) {
+        return true;
+      }
 
-  public static boolean isPrime(int number) {
-    if (number == 1) {
-      return false;
-    }
-    if (number == 2) {
+      if (number % 2 == 0) {
+        return false;
+      }
+
+      for (int i = 3; i * i < number; i += 2) {
+        if (number % i == 0) {
+          return false;
+        }
+      }
+
       return true;
     }
 
-    if (number % 2 == 0) {
-      return false;
-    }
-
-    for (int i = 3; i * i < number; i += 2) {
-      if (number % i == 0) {
-        return false;
-      }
-    }
-
-    return true;
   }
 
-  private static void findAllFactors(int n) {
-    allFactorsMap = new TreeMap<>();
-    for (int i = 2; i * i <= n; i++) {
-      if (n % i == 0) {
-        allFactorsMap.put(i, n / i);
-      }
-    }
-  }
-
-  private static void printALlFactors() {
-    for (Map.Entry<Integer, Integer> entry : allFactorsMap.entrySet()) {
-      System.out.printf("((%d, %d)%n", entry.getKey(), entry.getValue());
-    }
-  }
 }
