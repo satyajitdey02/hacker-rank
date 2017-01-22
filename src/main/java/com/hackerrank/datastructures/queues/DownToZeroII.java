@@ -15,9 +15,12 @@ public class DownToZeroII {
     int q = in.nextInt();
     while (q-- > 0) {
       int n = in.nextInt();
+      long startTime = System.currentTimeMillis();
       currentMinDepth = Integer.MAX_VALUE;
       FactorsTree tree = new FactorsTree(n, 0);
       System.out.println(tree.getDownToZeroStep());
+      long endTime = System.currentTimeMillis();
+      System.out.println(endTime - startTime);
     }
     in.close();
   }
