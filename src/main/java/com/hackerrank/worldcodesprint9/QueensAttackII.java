@@ -50,19 +50,19 @@ public class QueensAttackII {
     }
 
     if (rq > 0 && rq < n - 1 && cq == n - 1) {
-      availableAttacks = new int[]{4, 5, 6};
+      availableAttacks = new int[]{0, 2, 4, 5, 6};
     }
 
     if (rq == n - 1 && cq > 0 && cq < n - 1) {
-      availableAttacks = new int[]{4, 6, 7};
+      availableAttacks = new int[]{2, 3, 4, 6, 7};
     }
 
     if (rq > 0 && rq < n - 1 && cq == 0) {
-      availableAttacks = new int[]{4, 5, 7};
+      availableAttacks = new int[]{1, 3, 4, 5, 7};
     }
 
     if (rq == 0 && cq > 0 && cq < n - 1) {
-      availableAttacks = new int[]{5, 6, 7};
+      availableAttacks = new int[]{0, 1, 5, 6, 7};
     }
 
     int count = 0;
