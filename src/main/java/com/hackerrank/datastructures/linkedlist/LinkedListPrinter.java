@@ -7,7 +7,13 @@ public class LinkedListPrinter {
   private Node head;
 
   public static void main(String[] args) {
-    //InsertNode
+    Node secondNode = new Node();
+    secondNode.data = 2;
+
+    Node firstNode = new Node(3, secondNode);
+
+    LinkedListPrinter printer = new LinkedListPrinter(firstNode);
+    printer.print();
   }
 
   public LinkedListPrinter(Node head) {
