@@ -1,8 +1,8 @@
-package com.skill.test;
+package com.skill.test.Toptal;
 
 import java.util.*;
 
-public class Toptal {
+public class Mock {
     public static void main(String[] args) {
         System.out.println(solution(new int[] {1, 3, 6, 4, 1, 2}));
     }

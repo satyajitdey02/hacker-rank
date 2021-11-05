@@ -3,12 +3,7 @@ package com.helping.code;
 public class LinkedListNodePrint {
 
     public static void main(String[] args) {
-        Node n1 = new Node(1);
-        Node n2 = new Node(2, n1);
-        Node n3 = new Node(3, n2);
-        Node n4 = new Node(4, n3);
-
-        printNode(n4);
+        printNode(new Node(1, new Node(2, new Node(3, new Node(4, null)))));
     }
 
     private static void printNode(Node head) {
