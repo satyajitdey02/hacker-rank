@@ -1,4 +1,4 @@
-package com.skill.test.zalando.code;
+package com.skill.test.zalando.customs.tech;
 
 public class Task1 {
 

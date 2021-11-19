@@ -1,4 +1,4 @@
-package com.skill.test.zalando.code;
+package com.skill.test.zalando.customs.tech;
 
 import java.util.List;
 import java.util.stream.Collectors;
