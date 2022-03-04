@@ -5,8 +5,13 @@ import java.util.stream.IntStream;
 
 public class TrianglePrinter {
 	public static void main(String[] args) {
-		printTriangle(4);
-		printTriangleAlt(4);
+		//printTriangle(4);
+		//printTriangleAlt(4);
+		printSOmething();
+	}
+
+	private static void printSOmething() {
+		IntStream.rangeClosed(1, 3).mapToObj(i -> "*").forEach(System.out::println);
 	}
 
 	private static void printTriangle(int depth) {
@@ -21,6 +26,7 @@ public class TrianglePrinter {
 			startPos--;
 			stopPos++;
 		}
+
         long stop = System.nanoTime();
         System.out.println("Exe time: " + (stop - start));
 	}
