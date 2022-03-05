@@ -16,7 +16,7 @@ public class RobotDestinationFinder {
                 theta = theta - 90.0;
             } else if (instructions.charAt(i) == 'R') {
                 theta = theta + 90.0;
-            } else {
+            } else {//Consider instructions are valid containing characters 'L', 'R' and 'F' only
                 x = x + (int) Math.sin(Math.toRadians(theta));
                 y = y + (int) Math.cos(Math.toRadians(theta));
             }
