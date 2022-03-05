@@ -4,11 +4,11 @@ import java.util.concurrent.Callable;
 
 import static java.lang.Thread.sleep;
 
-public class RaceThread implements Callable<Robot> {
+public class RacingTask implements Callable<Robot> {
 
     private final Robot robot;
 
-    public RaceThread(Robot robot) {
+    public RacingTask(Robot robot) {
         this.robot = robot;
     }
 

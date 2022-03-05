@@ -20,7 +20,7 @@ public class RaceManager {
         noOfParticipantsCompletedRace = 0;
         List<Future<Robot>> futureList = new ArrayList<>();
         for (Robot robot : participants) {
-            Callable<Robot> joe = new RaceThread(robot);
+            Callable<Robot> joe = new RacingTask(robot);
             Future<Robot> joeFuture = executor.submit(joe);
             futureList.add(joeFuture);
         }
