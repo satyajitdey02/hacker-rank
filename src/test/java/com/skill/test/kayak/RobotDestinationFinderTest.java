@@ -18,6 +18,6 @@ public class RobotDestinationFinderTest {
     @Test
     @DisplayName("Find Destination when instruction is 'LFFFRFFFRRFFF'")
     public void findRobotDestinationWithNonEmptyInstruction() {
-        assertArrayEquals(new Integer[]{2, 9}, destinationFinder.find("LFFFRFFFRRFFF"));
+        assertArrayEquals(new Integer[]{-3, 0}, destinationFinder.find("LFFFRFFFRRFFF"));
     }
 }
