@@ -1,6 +1,5 @@
 package com.skill.test.kayak.exercise1;
 
-import com.skill.test.kayak.exercise1.RobotDestinationFinder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -4,7 +4,6 @@ public class Profile {
     private Turn leftDirection;
     private Turn rightDirection;
     private Integer moveForwardUnit;
-    private Integer batteryLevel;
     private Integer powerUsedPerMovement;
 
     public Profile() {
@@ -16,7 +15,6 @@ public class Profile {
         this.leftDirection = leftDirection;
         this.rightDirection = rightDirection;
         this.moveForwardUnit = moveForwardUnit;
-        this.batteryLevel = batteryLevel;
         this.powerUsedPerMovement = powerUsedPerMovement;
     }
 
@@ -42,14 +40,6 @@ public class Profile {
 
     public void setMoveForwardUnit(Integer moveForwardUnit) {
         this.moveForwardUnit = moveForwardUnit;
-    }
-
-    public Integer getBatteryLevel() {
-        return batteryLevel;
-    }
-
-    public void setBatteryLevel(Integer batteryLevel) {
-        this.batteryLevel = batteryLevel;
     }
 
     public Integer getPowerUsedPerMovement() {

@@ -1,7 +1,5 @@
 package com.skill.test.kayak.exercise3;
 
-import com.skill.test.kayak.exercise3.RaceManager;
-import com.skill.test.kayak.exercise3.Robot;
 import org.junit.jupiter.api.Test;
 
 public class RobotRaceTest {
@@ -10,9 +8,9 @@ public class RobotRaceTest {
     public void raceWith3Robots()  {
 
        RaceManager manager = new RaceManager();
-       manager.addParticipants(new Robot("Joe", 3, "FRFLLFRF"));
-       manager.addParticipants(new Robot("Bill", 1, "FFFFFLF"));
-       manager.addParticipants(new Robot("Jim", 2, "LFRF"));
+       manager.addParticipants(new RegularRobot("Joe", 3, "FRFLLFRF"));
+       manager.addParticipants(new RegularRobot("Bill", 1, "FFFFFLF"));
+       manager.addParticipants(new RegularRobot("Jim", 2, "LFRF"));
 
        manager.startRace();
        manager.finishRace();

@@ -9,19 +9,19 @@ public class RaceManager {
 
     ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    private final List<Robot> participants = new ArrayList<>();
+    private final List<AbstractRobot> participants = new ArrayList<>();
     private static Integer noOfParticipantsCompletedRace;
 
-    public void addParticipants(Robot robot) {
-        participants.add(robot);
+    public void addParticipants(AbstractRobot abstractRobot) {
+        participants.add(abstractRobot);
     }
 
     public void startRace() {
         noOfParticipantsCompletedRace = 0;
-        List<Future<Robot>> futureList = new ArrayList<>();
-        for (Robot robot : participants) {
-            Callable<Robot> joe = new RacingTask(robot);
-            Future<Robot> joeFuture = executor.submit(joe);
+        List<Future<AbstractRobot>> futureList = new ArrayList<>();
+        for (AbstractRobot abstractRobot : participants) {
+            Callable<AbstractRobot> joe = new RacingTask(abstractRobot);
+            Future<AbstractRobot> joeFuture = executor.submit(joe);
             futureList.add(joeFuture);
         }
 
@@ -39,7 +39,7 @@ public class RaceManager {
         return ++noOfParticipantsCompletedRace;
     }
 
-    private void printResult(List<Future<Robot>> list) {
+    private void printResult(List<Future<AbstractRobot>> list) {
         list.stream().map(e -> {
             try {
                 return e.get();
@@ -48,7 +48,7 @@ public class RaceManager {
             }
 
             return null;
-        }).sorted(Comparator.comparingInt(Robot::getRank)).forEach(Robot::printRankAndPosition);
+        }).sorted(Comparator.comparingInt(AbstractRobot::getRank)).forEach(AbstractRobot::announceResult);
     }
 
     public void finishRace() {

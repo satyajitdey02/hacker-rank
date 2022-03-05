@@ -1,6 +1,6 @@
 package com.skill.test.kayak.exercise3;
 
-public class Robot {
+public abstract class AbstractRobot {
     private String name;
     private Integer delay;
     private String instructions;
@@ -8,17 +8,13 @@ public class Robot {
     private Integer[] position = new Integer[2];
     private Integer rank;
 
-    public Robot() {
-    }
-
-    public Robot(String name, Integer delay, String instructions) {
+    public AbstractRobot(String name, Integer delay, String instructions) {
         this.name = name;
         this.delay = delay;
         this.instructions = instructions;
-        this.profile = new Profile(Turn.LEFT, Turn.RIGHT, 1, 100, 1);
     }
 
-    public Robot(String name, Integer delay, String instructions, Profile profile) {
+    public AbstractRobot(String name, Integer delay, String instructions, Profile profile) {
         this.name = name;
         this.delay = delay;
         this.instructions = instructions;
@@ -73,7 +69,9 @@ public class Robot {
         this.profile = profile;
     }
 
-    public void printRankAndPosition() {
+    public abstract void race() throws Exception;
+
+    public void announceResult() {
         System.out.printf("%s is #%d, at [%d,%d]\n",
                 this.getName(), this.getRank(), this.getPosition()[0], this.getPosition()[1]);
     }
