@@ -1,5 +1,6 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise2;
 
+import com.skill.test.kayak.exercise2.Counter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

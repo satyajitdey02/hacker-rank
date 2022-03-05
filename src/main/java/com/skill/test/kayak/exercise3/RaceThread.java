@@ -1,6 +1,5 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise3;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.Callable;
 
 import static java.lang.Thread.sleep;

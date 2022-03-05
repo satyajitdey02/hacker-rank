@@ -1,4 +1,6 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise1;
+
+import com.skill.test.kayak.exercise3.Turn;
 
 public class RobotDestinationFinder {
 

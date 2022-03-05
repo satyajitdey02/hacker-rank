@@ -1,4 +1,4 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise3;
 
 public class Robot {
     private String name;

@@ -1,4 +1,4 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise2;
 
 import java.util.stream.IntStream;
 

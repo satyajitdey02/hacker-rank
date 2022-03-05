@@ -1,5 +1,7 @@
-package com.skill.test.kayak;
+package com.skill.test.kayak.exercise3;
 
+import com.skill.test.kayak.exercise3.RaceManager;
+import com.skill.test.kayak.exercise3.Robot;
 import org.junit.jupiter.api.Test;
 
 public class RobotRaceTest {
