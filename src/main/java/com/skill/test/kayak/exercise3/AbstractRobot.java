@@ -1,6 +1,12 @@
 package com.skill.test.kayak.exercise3;
 
+import java.util.Objects;
+
 public abstract class AbstractRobot {
+
+    static final double NINETY_DEGREE_VAL = 90.0;
+    static final Integer SECOND_MILLIS = 1000;
+
     private String name;
     private Integer delay;
     private String instructions;
@@ -84,5 +90,18 @@ public abstract class AbstractRobot {
     void logStep(Integer executedAt, String name, Character turnOrMove) {
         System.out.printf("%02ds %s: %s %s%n",
                 executedAt, name, turnOrMove == 'F' ? "Moves" : "Turns", Character.toString(turnOrMove));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractRobot that = (AbstractRobot) o;
+        return Objects.equals(name, that.name) && Objects.equals(delay, that.delay) && Objects.equals(instructions, that.instructions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, delay, instructions);
     }
 }

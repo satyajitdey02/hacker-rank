@@ -17,13 +17,13 @@ public class RegularRobot extends AbstractRobot {
         for (int i = 0; i < this.getInstructions().length(); i++) {
             Long startTime = System.currentTimeMillis();
             if (i != 0) {
-                sleep(this.getDelay() * 1000);
+                sleep((long) this.getDelay() * SECOND_MILLIS);
             }
 
             if (this.getInstructions().charAt(i) == 'L') {
-                theta = theta - 90.0;
+                theta = theta - NINETY_DEGREE_VAL;
             } else if (this.getInstructions().charAt(i) == 'R') {
-                theta = theta + 90.0;
+                theta = theta + NINETY_DEGREE_VAL;
             } else {
                 x = x + (int) Math.sin(Math.toRadians(theta));
                 y = y + (int) Math.cos(Math.toRadians(theta));

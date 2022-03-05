@@ -9,7 +9,7 @@ public class RaceManager {
 
     ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    private final List<AbstractRobot> participants = new ArrayList<>();
+    private final static List<AbstractRobot> participants = new ArrayList<>();
     private static Integer noOfParticipantsCompletedRace;
 
     public void addParticipants(AbstractRobot abstractRobot) {
@@ -54,5 +54,9 @@ public class RaceManager {
     public void finishRace() {
         participants.clear();
         noOfParticipantsCompletedRace = 0;
+    }
+
+    public static synchronized void abortRace(AbstractRobot robot) {
+        participants.remove(robot);
     }
 }
