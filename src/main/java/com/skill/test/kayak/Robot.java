@@ -72,4 +72,9 @@ public class Robot {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
+
+    public void printRankAndPosition() {
+        System.out.printf("%s is #%d, at [%d,%d]\n",
+                this.getName(), this.getRank(), this.getPosition()[0], this.getPosition()[1]);
+    }
 }

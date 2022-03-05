@@ -31,6 +31,7 @@ public class RaceManager {
             // Do nothing
         }
 
+        System.out.println("The race has ENDED!");
         printResult(futureList);
     }
 
@@ -47,9 +48,7 @@ public class RaceManager {
             }
 
             return null;
-        }).sorted(Comparator.comparingInt(Robot::getRank)).forEach(e -> {
-            System.out.printf("%s is #%d, at [%d,%d]\n", e.getName(), e.getRank(), e.getPosition()[0], e.getPosition()[1]);
-        });
+        }).sorted(Comparator.comparingInt(Robot::getRank)).forEach(Robot::printRankAndPosition);
     }
 
     public void finishRace() {
