@@ -75,4 +75,14 @@ public abstract class AbstractRobot {
         System.out.printf("%s is #%d, at [%d,%d]\n",
                 this.getName(), this.getRank(), this.getPosition()[0], this.getPosition()[1]);
     }
+
+    Integer calculateExecutedAt(Integer prevExeTime, Long currentStartTime, Long currentStopTime) {
+        Long codeExeTime = (currentStopTime - currentStartTime) / 1000;
+        return prevExeTime + Integer.parseInt(String.valueOf(codeExeTime));
+    }
+
+    void logStep(Integer executedAt, String name, Character turnOrMove) {
+        System.out.printf("%02ds %s: %s %s%n",
+                executedAt, name, turnOrMove == 'F' ? "Moves" : "Turns", Character.toString(turnOrMove));
+    }
 }

@@ -2,14 +2,14 @@ package com.skill.test.kayak.exercise3;
 
 import static java.lang.Thread.sleep;
 
-public class RegularRobot extends AbstractRobot {
+public class MisguidedRobot extends AbstractRobot {
 
-    public RegularRobot(String name, Integer delay, String instructions) {
-        super(name, delay, instructions);
+    public MisguidedRobot(String name, Integer delay, String instructions, Profile profile) {
+        super(name, delay, instructions, profile);
     }
 
     @Override
-    public void race() throws InterruptedException {
+    public void race() throws Exception {
         int x = 0, y = 0;
         double theta = 0.0;
         Integer executedAt = 1;
@@ -21,10 +21,10 @@ public class RegularRobot extends AbstractRobot {
             }
 
             if (this.getInstructions().charAt(i) == 'L') {
-                theta = theta - 90.0;
+                theta = theta + (this.getProfile().getLeftDirection().getValue() * 90.0);
             } else if (this.getInstructions().charAt(i) == 'R') {
-                theta = theta + 90.0;
-            } else {
+                theta = theta + (this.getProfile().getRightDirection().getValue() * 90.0);
+            } else {//Consider instructions are valid containing characters 'L', 'R' and 'F' only
                 x = x + (int) Math.sin(Math.toRadians(theta));
                 y = y + (int) Math.cos(Math.toRadians(theta));
             }

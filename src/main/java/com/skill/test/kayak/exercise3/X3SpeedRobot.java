@@ -2,14 +2,14 @@ package com.skill.test.kayak.exercise3;
 
 import static java.lang.Thread.sleep;
 
-public class RegularRobot extends AbstractRobot {
+public class X3SpeedRobot extends AbstractRobot {
 
-    public RegularRobot(String name, Integer delay, String instructions) {
-        super(name, delay, instructions);
+    public X3SpeedRobot(String name, Integer delay, String instructions) {
+        super(name, delay, instructions, new Profile(Turn.LEFT, Turn.RIGHT, 3));
     }
 
     @Override
-    public void race() throws InterruptedException {
+    public void race() throws Exception {
         int x = 0, y = 0;
         double theta = 0.0;
         Integer executedAt = 1;
@@ -25,8 +25,8 @@ public class RegularRobot extends AbstractRobot {
             } else if (this.getInstructions().charAt(i) == 'R') {
                 theta = theta + 90.0;
             } else {
-                x = x + (int) Math.sin(Math.toRadians(theta));
-                y = y + (int) Math.cos(Math.toRadians(theta));
+                x = x + (int) Math.sin(Math.toRadians(theta)) * this.getProfile().getMoveForwardUnit();
+                y = y + (int) Math.cos(Math.toRadians(theta)) * this.getProfile().getMoveForwardUnit();
             }
 
             Long stopTime = System.currentTimeMillis();
